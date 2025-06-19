@@ -3,7 +3,7 @@
 // All Rights Reserved
 //******************************************************************************
 // File    : appTimer.c
-// Summary : Finds sum of first ten natural numbers
+// Summary : Contain functions to find time in GMT,IST and PST
 // Note    : None
 // Author  : Bimesh Raj K R
 // Date    : 18/Jun/2025
@@ -14,6 +14,7 @@
 #include<time.h>
 #include<stdbool.h>
 #include"appTimer.h"
+#include "..\common.h"
 
 //******************************* Local Types **********************************
 
@@ -320,14 +321,14 @@ bool appTimerDisplayGMT(time_t currentTime)
         printf("\nUTC (0:00)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu AM\nDate : %02ld/%02hu/%02ld\n", 
             hours, minutes, seconds, days, months, years);
-        printf("Epoch : %d\n",time(&currentTime));
+        printf("Epoch : %ld\n",time(&currentTime));
     }
     else
     {
         printf("\nUTC (0:00)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu PM\nDate : %02ld/%02hu/%02ld\n", 
             hours,minutes, seconds, days, months, years);
-        printf("Epoch : %d\n",time(&currentTime));
+        printf("Epoch : %ld\n",time(&currentTime)*1000);
     }
 
     return true;

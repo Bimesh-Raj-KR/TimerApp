@@ -12,7 +12,7 @@
 //****************************** Include Files *********************************
 #include<stdio.h>
 #include<time.h>
-#include<Windows.h>
+#include<unistd.h>
 #include"appTimer.h"
 
 //******************************* Local Types **********************************
@@ -42,7 +42,7 @@ int main()
         appTimerDisplayGMT(currentTime);
         appTimerDisplayIST(currentTime);
         appTimerDisplayPST(currentTime);
-        Sleep(1);
+        sleep(1);
     }
 
     return 0;

@@ -15,8 +15,7 @@
 #include<time.h>
 #include<stdbool.h>
 //******************************* Global Types ******************************** 
-typedef unsigned short uint16;
-typedef unsigned long uint32;
+
 //***************************** Global Constants ****************************** 
 #define ZERO            (0)
 #define ONE             (1)
@@ -32,8 +31,8 @@ typedef unsigned long uint32;
 #define LEAP_CHECK_TWO  (400)
 #define MAX_LEAP        (492)
 #define INITIAL_YEAR    (1970)
-#define TIME_PST        (28800)
 #define TIME_IST        (19800)
+#define TIME_PST        (28800)
 //***************************** Global Variables ****************************** 
 
 //**************************** Forward Declarations *************************** 
