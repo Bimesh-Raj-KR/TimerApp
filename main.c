@@ -1,16 +1,19 @@
-//****************************** Hello World ***********************************
+//****************************** GMT,IST and PST *******************************
 // Copyright (c) 2025 Trenser Technology Solutions
 // All Rights Reserved
 //******************************************************************************
 // File    : main.c
-// Summary : Print "Hello World"
+// Summary : Gives time in GMT,IST and PST
 // Note    : None
 // Author  : Bimesh Raj K R
-// Date    : 16/Jun/2025
+// Date    : 18/Jun/2025
 //******************************************************************************
 
 //****************************** Include Files *********************************
 #include<stdio.h>
+#include<time.h>
+#include<Windows.h>
+#include"appTimer.h"
 
 //******************************* Local Types **********************************
 
@@ -21,15 +24,26 @@
 //***************************** Local Functions ********************************
 
 //*************************************.main.***********************************
-// Purpose : Prints "Hello World"
+// Purpose : Calls functions to display time in GMT, IST, PST
 // Inputs  : None
 // Outputs : None
 // Return  : 0
-// Notes   : None
+// Notes   : Prints Time every second until externally stopped
 //******************************************************************************
+
+
 int main()
 {
-    printf("Hello World");
+    time_t currentTime;
+
+    while (1)
+    {
+        time(&currentTime);
+        appTimerDisplayGMT(currentTime);
+        appTimerDisplayIST(currentTime);
+        appTimerDisplayPST(currentTime);
+        Sleep(1);
+    }
 
     return 0;
 }
