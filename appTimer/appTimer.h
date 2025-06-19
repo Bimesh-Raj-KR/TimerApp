@@ -21,6 +21,7 @@
 #define ONE             (1)
 #define LEAP_CHECK_ONE  (4)
 #define MONTHS          (12)
+#define TIME_LIMIT      (12)
 #define HOURS           (24)
 #define MIN_MONTH       (30)
 #define FEBRUARY        (28)

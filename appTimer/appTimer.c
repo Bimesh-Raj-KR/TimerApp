@@ -110,9 +110,9 @@ bool appTimerDisplayPST(time_t tCurrentTime)
 
     unMonths = unIterator + ONE;
 
-    if (MONTHS < unHours)
+    if (TIME_LIMIT < unHours)
     {
-        unHours = unHours - MONTHS;
+        unHours = unHours - TIME_LIMIT;
 
         unMerdianCheck = ONE;
     }
@@ -121,7 +121,7 @@ bool appTimerDisplayPST(time_t tCurrentTime)
         unMerdianCheck = ZERO;
     }
 
-    if(MONTHS == unHours)
+    if(TIME_LIMIT == unHours)
     {
         if(ONE == unMerdianCheck)
         {
@@ -202,9 +202,10 @@ bool appTimerDisplayIST(time_t tCurrentTime)
     }
 
     unMonths = unIterator + ONE;
-    if (MONTHS < unHours)
+
+    if (TIME_LIMIT < unHours)
     {
-        unHours = unHours - MONTHS;
+        unHours = unHours - TIME_LIMIT;
 
         unMerdianCheck = ONE;
     }
@@ -213,7 +214,7 @@ bool appTimerDisplayIST(time_t tCurrentTime)
         unMerdianCheck = ZERO;
     }
 
-    if(MONTHS == unHours)
+    if(TIME_LIMIT == unHours)
     {
         if(ONE == unMerdianCheck)
         {
@@ -293,9 +294,10 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
     }
 
     unMonths = unIterator + ONE;
-    if (MONTHS < unHours)
+
+    if (TIME_LIMIT < unHours)
     {
-        unHours = unHours - MONTHS;
+        unHours = unHours - TIME_LIMIT;
 
         unMerdianCheck = ONE;
     }
@@ -304,7 +306,7 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
         unMerdianCheck = ZERO;
     }
 
-    if(MONTHS == unHours)
+    if(TIME_LIMIT == unHours)
     {
         if(ONE == unMerdianCheck)
         {
