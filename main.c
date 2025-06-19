@@ -34,14 +34,14 @@
 
 int main()
 {
-    time_t currentTime;
+    time_t tcurrentTime;
 
     while (1)
     {
-        time(&currentTime);
-        appTimerDisplayGMT(currentTime);
-        appTimerDisplayIST(currentTime);
-        appTimerDisplayPST(currentTime);
+        time(&tcurrentTime);
+        appTimerDisplayGMT(tcurrentTime);
+        appTimerDisplayIST(tcurrentTime);
+        appTimerDisplayPST(tcurrentTime);
         sleep(1);
     }
 
