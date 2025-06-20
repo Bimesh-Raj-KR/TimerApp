@@ -3,7 +3,7 @@
 // All Rights Reserved
 //******************************************************************************
 // File    : appTimer.c
-// Summary : Contain functions to find time in GMT,IST and PST
+// Summary : Contain functions to find time in GMT,IST and PST timezones
 // Note    : None
 // Author  : Bimesh Raj K R
 // Date    : 18/Jun/2025
@@ -33,11 +33,11 @@ static bool appTimerCheckLeap(uint32 ulYears);
 //******************************************************************************
 static bool appTimerCheckLeap(uint32 ulYears)
 {
-    if(ZERO == ulYears % LEAP_CHECK_ONE)
+    if(ZERO == (ulYears % LEAP_CHECK_ONE))
     {
-        if (ZERO == ulYears % MAX_ARRAY_SIZE)
+        if (ZERO == (ulYears % MAX_ARRAY_SIZE))
         {
-            if (ZERO == ulYears % LEAP_CHECK_TWO)
+            if (ZERO == (ulYears % LEAP_CHECK_TWO))
             {
                 return true;
             }
@@ -58,7 +58,7 @@ static bool appTimerCheckLeap(uint32 ulYears)
 }
 
 //***************************.appTimerDisplayPST.*******************************
-// Purpose : Function to display time in GMT
+// Purpose : Display time of PST timezone in 12 hour system
 // Inputs  : tCurrentTime - Stores current epoch time
 // Outputs : Date and Time in PST
 // Return  : true,false
@@ -70,6 +70,7 @@ bool appTimerDisplayPST(time_t tCurrentTime)
     {
         return false;
     }
+
     uint16 unIterator;
     uint16 unMerdianCheck;
     uint16 unSeconds;
@@ -91,13 +92,15 @@ bool appTimerDisplayPST(time_t tCurrentTime)
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
         MIN_MONTH, MAX_MONTH};
-    
+
+// Loop to Find the Current Day and Month
     for (unIterator = ZERO; unIterator < MONTHS; unIterator++)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
             ulDays -= unArrayMonths[unIterator];
-            if(appTimerCheckLeap(ulYears) && ONE == unIterator)
+
+            if(appTimerCheckLeap(ulYears) && (ONE == unIterator))
             {
                 ulDays--;
             }
@@ -150,7 +153,7 @@ bool appTimerDisplayPST(time_t tCurrentTime)
 }
 
 //***************************.appTimerDisplayIST.*******************************
-// Purpose : Function to display time in IST
+// Purpose : Display time of IST timezone in 12 hour system
 // Inputs  : tCurrentTime - Stores current epoch time
 // Outputs : Date and Time in IST
 // Return  : true,false
@@ -162,6 +165,7 @@ bool appTimerDisplayIST(time_t tCurrentTime)
     {
         return false;
     }
+
     uint16 unIterator;
     uint16 unMerdianCheck;
     uint16 unSeconds;
@@ -183,14 +187,15 @@ bool appTimerDisplayIST(time_t tCurrentTime)
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
         MIN_MONTH, MAX_MONTH};
-    
 
+// Loop to Find the Current Day and Month
     for (unIterator = ZERO; unIterator < MONTHS; unIterator++)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
             ulDays -= unArrayMonths[unIterator];
-            if(appTimerCheckLeap(ulYears) && ONE == unIterator)
+
+            if(appTimerCheckLeap(ulYears) && (ONE == unIterator))
             {
                 ulDays--;
             }
@@ -206,7 +211,6 @@ bool appTimerDisplayIST(time_t tCurrentTime)
     if (TIME_LIMIT < unHours)
     {
         unHours = unHours - TIME_LIMIT;
-
         unMerdianCheck = ONE;
     }
     else
@@ -243,7 +247,7 @@ bool appTimerDisplayIST(time_t tCurrentTime)
 }
 
 //***************************.appTimerDisplayGMT.*******************************
-// Purpose : Function to display time in GMT
+// Purpose : Display time of GMT timezone in 12 hour system
 // Inputs  : tCurrentTime - Stores current epoch time
 // Outputs : Date and Time in UTC
 // Return  : true,false
@@ -255,6 +259,7 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
     {
         return false;
     }
+
     uint16 unIterator;
     uint16 unMerdianCheck;
     uint16 unSeconds;
@@ -275,14 +280,15 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
         MIN_MONTH, MAX_MONTH};
-    
 
+//Loop to Find the Current Day and Month
     for (unIterator = ZERO; unIterator < MONTHS; unIterator++)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
             ulDays -= unArrayMonths[unIterator];
-            if(appTimerCheckLeap(ulYears) && ONE == unIterator)
+
+            if(appTimerCheckLeap(ulYears) && (ONE == unIterator))
             {
                 ulDays--;
             }
@@ -298,7 +304,6 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
     if (TIME_LIMIT < unHours)
     {
         unHours = unHours - TIME_LIMIT;
-
         unMerdianCheck = ONE;
     }
     else

@@ -3,7 +3,8 @@
 // All Rights Reserved
 //******************************************************************************
 // File    : main.c
-// Summary : Gives time in GMT,IST and PST
+// Summary : Current GMT, IST and PST time is displayed every second in 12 hour 
+//           system format until externally stopped.
 // Note    : None
 // Author  : Bimesh Raj K R
 // Date    : 18/Jun/2025
@@ -14,7 +15,6 @@
 #include<time.h>
 #include<unistd.h>
 #include"appTimer.h"
-
 //******************************* Local Types **********************************
 
 //***************************** Local Constants ********************************
@@ -24,13 +24,13 @@
 //***************************** Local Functions ********************************
 
 //*************************************.main.***********************************
-// Purpose : Calls functions to display time in GMT, IST, PST
+// Purpose : Calls functions to display time every second in GMT, IST, PST 
+//           through an infinite while loop.
 // Inputs  : None
 // Outputs : None
 // Return  : 0
 // Notes   : Prints Time every second until externally stopped
 //******************************************************************************
-
 
 int main()
 {
