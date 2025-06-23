@@ -10,9 +10,6 @@
 //******************************************************************************
 
 //****************************** Include Files *********************************
-#include<stdio.h>
-#include<time.h>
-#include<stdbool.h>
 #include"appTimer.h"
 #include "../common.h"
 
@@ -33,7 +30,7 @@ static bool appTimerCheckLeap(uint32 ulYears);
 //******************************************************************************
 static bool appTimerCheckLeap(uint32 ulYears)
 {
-    if(ZERO == (ulYears % LEAP_CHECK_ONE))
+    if (ZERO == (ulYears % LEAP_CHECK_ONE))
     {
         if (ZERO == (ulYears % MAX_ARRAY_SIZE))
         {
@@ -66,7 +63,7 @@ static bool appTimerCheckLeap(uint32 ulYears)
 //******************************************************************************
 bool appTimerDisplayPST(time_t tCurrentTime)
 {
-    if(ZERO == tCurrentTime)
+    if (ZERO == tCurrentTime)
     {
         return false;
     }
@@ -100,7 +97,7 @@ bool appTimerDisplayPST(time_t tCurrentTime)
         {
             ulDays -= unArrayMonths[unIterator];
 
-            if(appTimerCheckLeap(ulYears) && (ONE == unIterator))
+            if (appTimerCheckLeap(ulYears) && (ONE == unIterator))
             {
                 ulDays--;
             }
@@ -124,9 +121,9 @@ bool appTimerDisplayPST(time_t tCurrentTime)
         unMerdianCheck = ZERO;
     }
 
-    if(TIME_LIMIT == unHours)
+    if (TIME_LIMIT == unHours)
     {
-        if(ONE == unMerdianCheck)
+        if (ONE == unMerdianCheck)
         {
             unMerdianCheck = ZERO;
         }
@@ -136,7 +133,7 @@ bool appTimerDisplayPST(time_t tCurrentTime)
         }
     }
 
-    if(ZERO == unMerdianCheck)
+    if (ZERO == unMerdianCheck)
     {
         printf("\nPST (-8:00)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu AM\nDate : %02ld/%02hu/%02ld\n", 
@@ -161,7 +158,7 @@ bool appTimerDisplayPST(time_t tCurrentTime)
 //******************************************************************************
 bool appTimerDisplayIST(time_t tCurrentTime)
 {
-    if(ZERO == tCurrentTime)
+    if (ZERO == tCurrentTime)
     {
         return false;
     }
@@ -195,7 +192,7 @@ bool appTimerDisplayIST(time_t tCurrentTime)
         {
             ulDays -= unArrayMonths[unIterator];
 
-            if(appTimerCheckLeap(ulYears) && (ONE == unIterator))
+            if (appTimerCheckLeap(ulYears) && (ONE == unIterator))
             {
                 ulDays--;
             }
@@ -218,9 +215,9 @@ bool appTimerDisplayIST(time_t tCurrentTime)
         unMerdianCheck = ZERO;
     }
 
-    if(TIME_LIMIT == unHours)
+    if (TIME_LIMIT == unHours)
     {
-        if(ONE == unMerdianCheck)
+        if (ONE == unMerdianCheck)
         {
             unMerdianCheck = ZERO;
         }
@@ -230,7 +227,7 @@ bool appTimerDisplayIST(time_t tCurrentTime)
         }
     }
 
-    if(ZERO == unMerdianCheck)
+    if (ZERO == unMerdianCheck)
     {
         printf("\nIST (+5:30)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu AM\nDate : %02ld/%02hu/%02ld\n", 
@@ -255,7 +252,7 @@ bool appTimerDisplayIST(time_t tCurrentTime)
 //******************************************************************************
 bool appTimerDisplayGMT(time_t tCurrentTime)
 {
-    if(ZERO == tCurrentTime)
+    if (ZERO == tCurrentTime)
     {
         return false;
     }
@@ -288,7 +285,7 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
         {
             ulDays -= unArrayMonths[unIterator];
 
-            if(appTimerCheckLeap(ulYears) && (ONE == unIterator))
+            if (appTimerCheckLeap(ulYears) && (ONE == unIterator))
             {
                 ulDays--;
             }
@@ -311,9 +308,9 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
         unMerdianCheck = ZERO;
     }
 
-    if(TIME_LIMIT == unHours)
+    if (TIME_LIMIT == unHours)
     {
-        if(ONE == unMerdianCheck)
+        if (ONE == unMerdianCheck)
         {
             unMerdianCheck = ZERO;
         }
@@ -323,7 +320,7 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
         }
     }
 
-    if(ZERO == unMerdianCheck)
+    if (ZERO == unMerdianCheck)
     {
         printf("\nUTC (0:00)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu AM\nDate : %02ld/%02hu/%02ld\n", 

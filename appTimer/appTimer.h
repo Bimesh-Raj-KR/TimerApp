@@ -11,7 +11,6 @@
 #define APPTIMER_H
 
 //******************************* Include Files ******************************* 
-#include<stdio.h>
 #include<time.h>
 #include<stdbool.h>
 //******************************* Global Types ******************************** 

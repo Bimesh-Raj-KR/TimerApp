@@ -34,15 +34,17 @@
 
 int main()
 {
-    time_t tcurrentTime;
+    time_t tCurrentTime;
 
     while (1)
     {
-        time(&tcurrentTime);
-        appTimerDisplayGMT(tcurrentTime);
-        appTimerDisplayIST(tcurrentTime);
-        appTimerDisplayPST(tcurrentTime);
+        time(&tCurrentTime);
+        appTimerDisplayGMT(tCurrentTime);
+        appTimerDisplayIST(tCurrentTime);
+        appTimerDisplayPST(tCurrentTime);
+        printf("\x1b[H");// Move Cursor to top-left
         sleep(1);
+        printf("\x1b[J");// clear screen
     }
 
     return 0;
