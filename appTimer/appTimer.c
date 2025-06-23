@@ -30,11 +30,11 @@ static bool appTimerCheckLeap(uint32 ulYears);
 //******************************************************************************
 static bool appTimerCheckLeap(uint32 ulYears)
 {
-    if (ZERO == (ulYears % LEAP_CHECK_ONE))
+    if (INITIALIZER_ZERO == (ulYears % LEAP_CHECK_ONE))
     {
-        if (ZERO == (ulYears % MAX_ARRAY_SIZE))
+        if (INITIALIZER_ZERO == (ulYears % MAX_ARRAY_SIZE))
         {
-            if (ZERO == (ulYears % LEAP_CHECK_TWO))
+            if (INITIALIZER_ZERO == (ulYears % LEAP_CHECK_TWO))
             {
                 return true;
             }
@@ -63,7 +63,7 @@ static bool appTimerCheckLeap(uint32 ulYears)
 //******************************************************************************
 bool appTimerDisplayPST(time_t tCurrentTime)
 {
-    if (ZERO == tCurrentTime)
+    if (INITIALIZER_ZERO == tCurrentTime)
     {
         return false;
     }
@@ -85,19 +85,19 @@ bool appTimerDisplayPST(time_t tCurrentTime)
     tCurrentTime /= HOURS;
     ulDays = tCurrentTime % DAYS;
     ulYears = INITIAL_YEAR + tCurrentTime / DAYS;
-    ulDays = ulDays + ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
+    ulDays = ulDays + INITIALIZER_ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
         MIN_MONTH, MAX_MONTH};
 
 // Loop to Find the Current Day and Month
-    for (unIterator = ZERO; unIterator < MONTHS; unIterator++)
+    for (unIterator = INITIALIZER_ZERO; unIterator < MONTHS; unIterator++)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
             ulDays -= unArrayMonths[unIterator];
 
-            if (appTimerCheckLeap(ulYears) && (ONE == unIterator))
+            if (appTimerCheckLeap(ulYears) && (INITIALIZER_ONE == unIterator))
             {
                 ulDays--;
             }
@@ -108,32 +108,32 @@ bool appTimerDisplayPST(time_t tCurrentTime)
         }
     }
 
-    unMonths = unIterator + ONE;
+    unMonths = unIterator + INITIALIZER_ONE;
 
     if (TIME_LIMIT < unHours)
     {
         unHours = unHours - TIME_LIMIT;
 
-        unMerdianCheck = ONE;
+        unMerdianCheck = INITIALIZER_ONE;
     }
     else
     {
-        unMerdianCheck = ZERO;
+        unMerdianCheck = INITIALIZER_ZERO;
     }
 
     if (TIME_LIMIT == unHours)
     {
-        if (ONE == unMerdianCheck)
+        if (INITIALIZER_ONE == unMerdianCheck)
         {
-            unMerdianCheck = ZERO;
+            unMerdianCheck = INITIALIZER_ZERO;
         }
         else
         {
-            unMerdianCheck = ONE;
+            unMerdianCheck = INITIALIZER_ONE;
         }
     }
 
-    if (ZERO == unMerdianCheck)
+    if (INITIALIZER_ZERO == unMerdianCheck)
     {
         printf("\nPST (-8:00)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu AM\nDate : %02ld/%02hu/%02ld\n", 
@@ -158,7 +158,7 @@ bool appTimerDisplayPST(time_t tCurrentTime)
 //******************************************************************************
 bool appTimerDisplayIST(time_t tCurrentTime)
 {
-    if (ZERO == tCurrentTime)
+    if (INITIALIZER_ZERO == tCurrentTime)
     {
         return false;
     }
@@ -180,19 +180,19 @@ bool appTimerDisplayIST(time_t tCurrentTime)
     tCurrentTime /= HOURS;
     ulDays = tCurrentTime % DAYS;
     ulYears = INITIAL_YEAR + tCurrentTime / DAYS;
-    ulDays = ulDays + ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
+    ulDays = ulDays + INITIALIZER_ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
         MIN_MONTH, MAX_MONTH};
 
 // Loop to Find the Current Day and Month
-    for (unIterator = ZERO; unIterator < MONTHS; unIterator++)
+    for (unIterator = INITIALIZER_ZERO; unIterator < MONTHS; unIterator++)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
             ulDays -= unArrayMonths[unIterator];
 
-            if (appTimerCheckLeap(ulYears) && (ONE == unIterator))
+            if (appTimerCheckLeap(ulYears) && (INITIALIZER_ONE == unIterator))
             {
                 ulDays--;
             }
@@ -203,31 +203,31 @@ bool appTimerDisplayIST(time_t tCurrentTime)
         }
     }
 
-    unMonths = unIterator + ONE;
+    unMonths = unIterator + INITIALIZER_ONE;
 
     if (TIME_LIMIT < unHours)
     {
         unHours = unHours - TIME_LIMIT;
-        unMerdianCheck = ONE;
+        unMerdianCheck = INITIALIZER_ONE;
     }
     else
     {
-        unMerdianCheck = ZERO;
+        unMerdianCheck = INITIALIZER_ZERO;
     }
 
     if (TIME_LIMIT == unHours)
     {
-        if (ONE == unMerdianCheck)
+        if (INITIALIZER_ONE == unMerdianCheck)
         {
-            unMerdianCheck = ZERO;
+            unMerdianCheck = INITIALIZER_ZERO;
         }
         else
         {
-            unMerdianCheck = ONE;
+            unMerdianCheck = INITIALIZER_ONE;
         }
     }
 
-    if (ZERO == unMerdianCheck)
+    if (INITIALIZER_ZERO == unMerdianCheck)
     {
         printf("\nIST (+5:30)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu AM\nDate : %02ld/%02hu/%02ld\n", 
@@ -252,7 +252,7 @@ bool appTimerDisplayIST(time_t tCurrentTime)
 //******************************************************************************
 bool appTimerDisplayGMT(time_t tCurrentTime)
 {
-    if (ZERO == tCurrentTime)
+    if (INITIALIZER_ZERO == tCurrentTime)
     {
         return false;
     }
@@ -273,19 +273,19 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
     tCurrentTime /= HOURS;
     ulDays = tCurrentTime % DAYS;
     ulYears = INITIAL_YEAR + tCurrentTime / DAYS;
-    ulDays = ulDays + ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
+    ulDays = ulDays + INITIALIZER_ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
         MIN_MONTH, MAX_MONTH};
 
 //Loop to Find the Current Day and Month
-    for (unIterator = ZERO; unIterator < MONTHS; unIterator++)
+    for (unIterator = INITIALIZER_ZERO; unIterator < MONTHS; unIterator++)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
             ulDays -= unArrayMonths[unIterator];
 
-            if (appTimerCheckLeap(ulYears) && (ONE == unIterator))
+            if (appTimerCheckLeap(ulYears) && (INITIALIZER_ONE == unIterator))
             {
                 ulDays--;
             }
@@ -296,31 +296,31 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
         }
     }
 
-    unMonths = unIterator + ONE;
+    unMonths = unIterator + INITIALIZER_ONE;
 
     if (TIME_LIMIT < unHours)
     {
         unHours = unHours - TIME_LIMIT;
-        unMerdianCheck = ONE;
+        unMerdianCheck = INITIALIZER_ONE;
     }
     else
     {
-        unMerdianCheck = ZERO;
+        unMerdianCheck = INITIALIZER_ZERO;
     }
 
     if (TIME_LIMIT == unHours)
     {
-        if (ONE == unMerdianCheck)
+        if (INITIALIZER_ONE == unMerdianCheck)
         {
-            unMerdianCheck = ZERO;
+            unMerdianCheck = INITIALIZER_ZERO;
         }
         else
         {
-            unMerdianCheck = ONE;
+            unMerdianCheck = INITIALIZER_ONE;
         }
     }
 
-    if (ZERO == unMerdianCheck)
+    if (INITIALIZER_ZERO == unMerdianCheck)
     {
         printf("\nUTC (0:00)\n--------------------\n");
         printf("Time : %02hu:%02hu:%02hu AM\nDate : %02ld/%02hu/%02ld\n", 
