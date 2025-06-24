@@ -42,6 +42,13 @@
 *.idb
 *.pdb
 
+# Assembly files
+*.s
+
+# Other files
+*.txt
+*.vscode
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
@@ -50,3 +57,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
