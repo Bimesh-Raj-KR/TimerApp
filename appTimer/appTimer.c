@@ -11,7 +11,6 @@
 
 //****************************** Include Files *********************************
 #include"appTimer.h"
-#include "../common.h"
 
 //******************************* Local Types **********************************
 
@@ -21,70 +20,104 @@
 
 //***************************** Local Functions ********************************
 static bool appTimerCheckLeap(uint32 ulYears);
+
+//*****************************.appTimerCheckLeap.******************************
+// Purpose : Bool function to print The LED state using if statements
+// Inputs  : *unLedState - Points to the location of state of LED
+// Outputs : None
+// Return  : blCheck
+// Notes   : None
+//******************************************************************************
+bool appTimerLed(uint16 *unpLedState)
+{
+    bool blCheck = true;
+
+    if (NULL == unpLedState)
+    {
+        blCheck = false;
+    }
+
+    if (INITIALIZER_ZERO == *unpLedState)
+    {
+        *unpLedState = INITIALIZER_ONE;
+        printf("\nLED OFF\n");
+    }
+    else
+    {
+        *unpLedState = INITIALIZER_ZERO;
+        printf("\nLED ON\n");
+    }
+}
 //*****************************.appTimerCheckLeap.******************************
 // Purpose : Bool function to check if an year is leap year or not
 // Inputs  : Years - current year
 // Outputs : None
-// Return  : true,false
+// Return  : blCheck
 // Notes   : None
 //******************************************************************************
 static bool appTimerCheckLeap(uint32 ulYears)
 {
+    bool blCheck = true;
+
     if (INITIALIZER_ZERO == (ulYears % LEAP_CHECK_ONE))
     {
         if (INITIALIZER_ZERO == (ulYears % MAX_ARRAY_SIZE))
         {
             if (INITIALIZER_ZERO == (ulYears % LEAP_CHECK_TWO))
             {
-                return true;
+                blCheck = true;
             }
             else
             {
-                return false;
+                blCheck = false;
             }
         }
         else
         {
-            return true;
+            blCheck = true;
         }
     }
     else
     {
-        return false;
+        blCheck = false;
     }
+
+    return blCheck;
 }
 
 //***************************.appTimerDisplayPST.*******************************
 // Purpose : Display time of PST timezone in 12 hour system
-// Inputs  : tCurrentTime - Stores current epoch time
+// Inputs  : ulCurrentTime - Stores current epoch time
 // Outputs : Date and Time in PST
-// Return  : true,false
+// Return  : blCheck
 // Notes   : None
 //******************************************************************************
-bool appTimerDisplayPST(time_t tCurrentTime)
+bool appTimerDisplayPST(time_t ulCurrentTime)
 {
-    if (INITIALIZER_ZERO == tCurrentTime)
+    bool blCheck = true;
+
+    if (INITIALIZER_ZERO == ulCurrentTime)
     {
-        return false;
+        blCheck = false;
     }
 
-    uint16 unIterator;
-    uint16 unMerdianCheck;
-    uint16 unSeconds;
-    uint16 unMinutes;
-    uint16 unHours;
-    uint16 unMonths;
-    uint32 ulDays;
-    uint32 ulYears;
-    tCurrentTime = tCurrentTime - TIME_PST;
-    unSeconds = tCurrentTime % SECONDS;
-    tCurrentTime /= SECONDS;
-    unMinutes = tCurrentTime % SECONDS;
-    tCurrentTime /= SECONDS;
-    unHours = tCurrentTime % HOURS;
-    tCurrentTime /= HOURS;
-    ulDays = tCurrentTime % DAYS;
-    ulYears = INITIAL_YEAR + tCurrentTime / DAYS;
+    uint16 unIterator = INITIALIZER_ZERO;
+    uint16 unMerdianCheck = INITIALIZER_ZERO;
+    uint16 unSeconds = INITIALIZER_ZERO;
+    uint16 unMinutes = INITIALIZER_ZERO;
+    uint16 unHours = INITIALIZER_ZERO;
+    uint16 unMonths = INITIALIZER_ZERO;
+    uint32 ulDays = INITIALIZER_ZERO;
+    uint32 ulYears = INITIALIZER_ZERO;
+    ulCurrentTime = ulCurrentTime - TIME_PST;
+    unSeconds = ulCurrentTime % SECONDS;
+    ulCurrentTime /= SECONDS;
+    unMinutes = ulCurrentTime % SECONDS;
+    ulCurrentTime /= SECONDS;
+    unHours = ulCurrentTime % HOURS;
+    ulCurrentTime /= HOURS;
+    ulDays = ulCurrentTime % DAYS;
+    ulYears = INITIAL_YEAR + ulCurrentTime / DAYS;
     ulDays = ulDays + INITIALIZER_ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
@@ -146,40 +179,42 @@ bool appTimerDisplayPST(time_t tCurrentTime)
             unHours,unMinutes, unSeconds, ulDays, unMonths, ulYears);
     }
 
-    return true;
+    return blCheck;
 }
 
 //***************************.appTimerDisplayIST.*******************************
 // Purpose : Display time of IST timezone in 12 hour system
-// Inputs  : tCurrentTime - Stores current epoch time
+// Inputs  : ulCurrentTime - Stores current epoch time
 // Outputs : Date and Time in IST
-// Return  : true,false
+// Return  : blCheck
 // Notes   : None
 //******************************************************************************
-bool appTimerDisplayIST(time_t tCurrentTime)
+bool appTimerDisplayIST(time_t ulCurrentTime)
 {
-    if (INITIALIZER_ZERO == tCurrentTime)
+    bool blCheck = true;
+
+    if (INITIALIZER_ZERO == ulCurrentTime)
     {
-        return false;
+        blCheck = false;
     }
 
-    uint16 unIterator;
-    uint16 unMerdianCheck;
-    uint16 unSeconds;
-    uint16 unMinutes;
-    uint16 unHours;
-    uint16 unMonths;
-    uint32 ulDays;
-    uint32 ulYears;
-    tCurrentTime = tCurrentTime + TIME_IST;
-    unSeconds = tCurrentTime % SECONDS;
-    tCurrentTime /= SECONDS;
-    unMinutes = tCurrentTime % SECONDS;
-    tCurrentTime /= SECONDS;
-    unHours = tCurrentTime % HOURS;
-    tCurrentTime /= HOURS;
-    ulDays = tCurrentTime % DAYS;
-    ulYears = INITIAL_YEAR + tCurrentTime / DAYS;
+    uint16 unIterator = INITIALIZER_ZERO;
+    uint16 unMerdianCheck = INITIALIZER_ZERO;
+    uint16 unSeconds = INITIALIZER_ZERO;
+    uint16 unMinutes = INITIALIZER_ZERO;
+    uint16 unHours = INITIALIZER_ZERO;
+    uint16 unMonths = INITIALIZER_ZERO;
+    uint32 ulDays = INITIALIZER_ZERO;
+    uint32 ulYears = INITIALIZER_ZERO;
+    ulCurrentTime = ulCurrentTime + TIME_IST;
+    unSeconds = ulCurrentTime % SECONDS;
+    ulCurrentTime /= SECONDS;
+    unMinutes = ulCurrentTime % SECONDS;
+    ulCurrentTime /= SECONDS;
+    unHours = ulCurrentTime % HOURS;
+    ulCurrentTime /= HOURS;
+    ulDays = ulCurrentTime % DAYS;
+    ulYears = INITIAL_YEAR + ulCurrentTime / DAYS;
     ulDays = ulDays + INITIALIZER_ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
@@ -240,39 +275,41 @@ bool appTimerDisplayIST(time_t tCurrentTime)
             unHours,unMinutes, unSeconds, ulDays, unMonths, ulYears);
     }
 
-    return true;
+    return blCheck;
 }
 
 //***************************.appTimerDisplayGMT.*******************************
 // Purpose : Display time of GMT timezone in 12 hour system
-// Inputs  : tCurrentTime - Stores current epoch time
+// Inputs  : ulCurrentTime - Stores current epoch time
 // Outputs : Date and Time in UTC
-// Return  : true,false
+// Return  : blCheck
 // Notes   : None
 //******************************************************************************
-bool appTimerDisplayGMT(time_t tCurrentTime)
+bool appTimerDisplayGMT(time_t ulCurrentTime)
 {
-    if (INITIALIZER_ZERO == tCurrentTime)
+    bool blCheck = true;
+
+    if (INITIALIZER_ZERO == ulCurrentTime)
     {
-        return false;
+        blCheck = false;
     }
 
-    uint16 unIterator;
-    uint16 unMerdianCheck;
-    uint16 unSeconds;
-    uint16 unMinutes;
-    uint16 unHours;
-    uint16 unMonths;
-    uint32 ulDays;
-    uint32 ulYears;
-    unSeconds = tCurrentTime % SECONDS;
-    tCurrentTime /= SECONDS;
-    unMinutes = tCurrentTime % SECONDS;
-    tCurrentTime /= SECONDS;
-    unHours = tCurrentTime % HOURS;
-    tCurrentTime /= HOURS;
-    ulDays = tCurrentTime % DAYS;
-    ulYears = INITIAL_YEAR + tCurrentTime / DAYS;
+    uint16 unIterator = INITIALIZER_ZERO;
+    uint16 unMerdianCheck = INITIALIZER_ZERO;
+    uint16 unSeconds = INITIALIZER_ZERO;
+    uint16 unMinutes = INITIALIZER_ZERO;
+    uint16 unHours = INITIALIZER_ZERO;
+    uint16 unMonths = INITIALIZER_ZERO;
+    uint32 ulDays = INITIALIZER_ZERO;
+    uint32 ulYears = INITIALIZER_ZERO;
+    unSeconds = ulCurrentTime % SECONDS;
+    ulCurrentTime /= SECONDS;
+    unMinutes = ulCurrentTime % SECONDS;
+    ulCurrentTime /= SECONDS;
+    unHours = ulCurrentTime % HOURS;
+    ulCurrentTime /= HOURS;
+    ulDays = ulCurrentTime % DAYS;
+    ulYears = INITIAL_YEAR + ulCurrentTime / DAYS;
     ulDays = ulDays + INITIALIZER_ONE - ((ulYears)/LEAP_CHECK_ONE - MAX_LEAP);
     uint16 unArrayMonths[] = {MAX_MONTH, FEBRUARY, MAX_MONTH, MIN_MONTH, 
         MAX_MONTH, MIN_MONTH, MAX_MONTH, MAX_MONTH, MIN_MONTH, MAX_MONTH,
@@ -332,9 +369,9 @@ bool appTimerDisplayGMT(time_t tCurrentTime)
         printf("Time : %02hu:%02hu:%02hu PM\nDate : %02ld/%02hu/%02ld\n", 
             unHours,unMinutes, unSeconds, ulDays, unMonths, ulYears);
     }
-    printf("Epoch : %ld\n",time(&tCurrentTime));
+    printf("Epoch : %ld\n",time(&ulCurrentTime));
 
-    return true;
+    return blCheck;
 }
 
 //EOF

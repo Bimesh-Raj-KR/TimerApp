@@ -12,7 +12,6 @@
 
 //****************************** Include Files *********************************
 #include<stdio.h>
-#include<time.h>
 #include<unistd.h>
 #include"appTimer.h"
 //******************************* Local Types **********************************
@@ -34,14 +33,15 @@
 
 int main()
 {
-    time_t tCurrentTime;
-
+    time_t ulCurrentTime;
+    uint16 unLedState = INITIALIZER_ZERO;
     while (1)
     {
-        time(&tCurrentTime);
-        appTimerDisplayGMT(tCurrentTime);
-        appTimerDisplayIST(tCurrentTime);
-        appTimerDisplayPST(tCurrentTime);
+        time(&ulCurrentTime);
+        appTimerDisplayGMT(ulCurrentTime);
+        appTimerDisplayIST(ulCurrentTime);
+        appTimerDisplayPST(ulCurrentTime);
+        appTimerLed(&unLedState);
         printf("\x1b[H");// Move Cursor to top-left
         sleep(1);
         printf("\x1b[J");// clear screen

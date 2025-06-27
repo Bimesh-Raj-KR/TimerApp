@@ -10,14 +10,15 @@
 #ifndef APPTIMER_H
 #define APPTIMER_H
 
-//******************************* Include Files ******************************* 
+//******************************* Include Files ******************************** 
 #include<time.h>
 #include<stdbool.h>
-//******************************* Global Types ******************************** 
+#include "common.h"
+//******************************* Global Types ********************************* 
 
-//***************************** Global Constants ****************************** 
-#define INITIALIZER_ONE     (0)
-#define INITIALIZER_ZERO    (1)
+//***************************** Global Constants ******************************* 
+#define INITIALIZER_ZERO    (0)
+#define INITIALIZER_ONE     (1)
 #define LEAP_CHECK_ONE      (4)
 #define MONTHS              (12)
 #define TIME_LIMIT          (12)
@@ -33,13 +34,14 @@
 #define INITIAL_YEAR        (1970)
 #define TIME_IST            (19800)
 #define TIME_PST            (28800)
-//***************************** Global Variables ****************************** 
+//***************************** Global Variables ******************************* 
 
-//**************************** Forward Declarations *************************** 
-bool appTimerDisplayPST(time_t currentTime);
-bool appTimerDisplayIST(time_t currentTime);
-bool appTimerDisplayGMT(time_t currentTime);
-//*********************** Inline Method Implementations *********************** 
+//**************************** Forward Declarations **************************** 
+bool appTimerLed(uint16 *unpLedState);
+bool appTimerDisplayPST(time_t ulCurrentTime);
+bool appTimerDisplayIST(time_t ulCurrentTime);
+bool appTimerDisplayGMT(time_t ulCurrentTime);
+//*********************** Inline Method Implementations ************************ 
 
 #endif // APPTIMER_H
 // EOF 
