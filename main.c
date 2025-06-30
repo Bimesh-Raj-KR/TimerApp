@@ -35,7 +35,7 @@ int main()
 {
     time_t ulCurrentTime;
     uint16 unLedState = INITIALIZER_ZERO;
-    while (1)
+    while (true)
     {
         time(&ulCurrentTime);
         appTimerDisplayGMT(ulCurrentTime);

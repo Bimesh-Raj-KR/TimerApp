@@ -1,9 +1,10 @@
-//**************************** GMT, IST and PST ********************************
+//**************************** LED state and Time ********************************
 // Copyright (c) 2025 Trenser Technology Solutions
 // All Rights Reserved
 //******************************************************************************
 // File    : appTimer.c
-// Summary : Contain functions to find time in GMT,IST and PST timezones
+// Summary : Contain functions to find time in GMT,IST and PST timezones and to
+//           and to altenate and print LED state every second
 // Note    : None
 // Author  : Bimesh Raj K R
 // Date    : 18/Jun/2025
@@ -21,7 +22,7 @@
 //***************************** Local Functions ********************************
 static bool appTimerCheckLeap(uint32 ulYears);
 
-//*****************************.appTimerCheckLeap.******************************
+//*******************************.appTimerLed.**********************************
 // Purpose : Bool function to print The LED state using if statements
 // Inputs  : *unLedState - Points to the location of state of LED
 // Outputs : None
@@ -47,6 +48,8 @@ bool appTimerLed(uint16 *unpLedState)
         *unpLedState = INITIALIZER_ZERO;
         printf("\nLED ON\n");
     }
+
+    return blCheck;
 }
 //*****************************.appTimerCheckLeap.******************************
 // Purpose : Bool function to check if an year is leap year or not
