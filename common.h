@@ -12,6 +12,8 @@
 
 //******************************* Include Files ******************************* 
 #include <stdio.h>
+#include <time.h>
+#include <stdbool.h>
 
 //******************************* Global Types ******************************** 
 typedef unsigned short uint16;

@@ -12,7 +12,6 @@
 //******************************************************************************
 
 //****************************** Include Files *********************************
-#include <stdio.h>
 #include <unistd.h>
 #include "appTimer.h"
 #include "LedSimulation.h"
