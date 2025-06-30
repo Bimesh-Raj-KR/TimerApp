@@ -2,7 +2,7 @@
 // Copyright (c) 2025 Trenser Technology Solutions
 // All Rights Reserved
 //******************************************************************************
-// File    : appTimer.c
+// File    : LedSimulation.c
 // Summary : Either LED ON or OFF state is printed after checking the value 
 //           in pointer 
 // Note    : None
