@@ -25,7 +25,7 @@
 // Purpose : Bool function to print The LED state using if statements
 // Inputs  : None
 // Outputs : None
-// Return  : blCheck
+// Return  : true
 // Notes   : None
 //******************************************************************************
 bool LedSimulationStatus()
