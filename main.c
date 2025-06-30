@@ -3,7 +3,7 @@
 // All Rights Reserved
 //******************************************************************************
 // File    : main.c
-// Summary : Time is continously displayed in GMT,IST and PST timezones and 
+// Summary : Time is continously displayed in GMT, IST and PST timezones and 
 //           also displays alternating LED states every second until externally 
 //           stopped.
 // Note    : None
