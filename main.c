@@ -1,10 +1,11 @@
-//****************************** GMT,IST and PST *******************************
+//****************************** LED state and Time *******************************
 // Copyright (c) 2025 Trenser Technology Solutions
 // All Rights Reserved
 //******************************************************************************
 // File    : main.c
-// Summary : Current GMT, IST and PST time is displayed every second in 12 hour 
-//           system format until externally stopped.
+// Summary : Time is continously displayed in GMT,IST and PST timezones and 
+//           also displays alternating LED states every second until externally 
+//           stopped.
 // Note    : None
 // Author  : Bimesh Raj K R
 // Date    : 18/Jun/2025
@@ -14,6 +15,7 @@
 #include<stdio.h>
 #include<unistd.h>
 #include"appTimer.h"
+#include "LedSimulation.h"
 //******************************* Local Types **********************************
 
 //***************************** Local Constants ********************************
@@ -24,7 +26,7 @@
 
 //*************************************.main.***********************************
 // Purpose : Calls functions to display time every second in GMT, IST, PST 
-//           through an infinite while loop.
+//            and print LED states through an infinite while loop.
 // Inputs  : None
 // Outputs : None
 // Return  : 0
@@ -41,7 +43,7 @@ int main()
         appTimerDisplayGMT(ulCurrentTime);
         appTimerDisplayIST(ulCurrentTime);
         appTimerDisplayPST(ulCurrentTime);
-        appTimerLed(&unLedState);
+        LedSimulationStatus(&unLedState);
         printf("\x1b[H");// Move Cursor to top-left
         sleep(1);
         printf("\x1b[J");// clear screen
