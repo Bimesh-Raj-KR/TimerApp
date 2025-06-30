@@ -37,16 +37,18 @@ bool appTimerLed(uint16 *unpLedState)
     {
         blCheck = false;
     }
-
-    if (INITIALIZER_ZERO == *unpLedState)
-    {
-        *unpLedState = INITIALIZER_ONE;
-        printf("\nLED OFF\n");
-    }
     else
     {
-        *unpLedState = INITIALIZER_ZERO;
-        printf("\nLED ON\n");
+        if (INITIALIZER_ZERO == *unpLedState)
+        {
+            *unpLedState = INITIALIZER_ONE;
+            printf("\nLED OFF\n");
+        }
+        else
+        {
+            *unpLedState = INITIALIZER_ZERO;
+            printf("\nLED ON\n");
+        }
     }
 
     return blCheck;
@@ -131,11 +133,15 @@ bool appTimerDisplayPST(time_t ulCurrentTime)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
-            ulDays -= unArrayMonths[unIterator];
-
             if (appTimerCheckLeap(ulYears) && (INITIALIZER_ONE == unIterator))
             {
-                ulDays--;
+                unArrayMonths[unIterator] ++;
+                ulDays -= unArrayMonths[unIterator];
+                unArrayMonths[unIterator] --;
+            }
+            else
+            {
+                ulDays -= unArrayMonths[unIterator];
             }
         }
         else
@@ -145,6 +151,12 @@ bool appTimerDisplayPST(time_t ulCurrentTime)
     }
 
     unMonths = unIterator + INITIALIZER_ONE;
+
+    if (ulDays == INITIALIZER_ZERO)
+    {
+        unMonths -= INITIALIZER_ONE;
+        ulDays = unArrayMonths[unMonths - INITIALIZER_ONE];
+    }
 
     if (TIME_LIMIT < unHours)
     {
@@ -228,11 +240,15 @@ bool appTimerDisplayIST(time_t ulCurrentTime)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
-            ulDays -= unArrayMonths[unIterator];
-
             if (appTimerCheckLeap(ulYears) && (INITIALIZER_ONE == unIterator))
             {
-                ulDays--;
+                unArrayMonths[unIterator] ++;
+                ulDays -= unArrayMonths[unIterator];
+                unArrayMonths[unIterator] --;
+            }
+            else
+            {
+                ulDays -= unArrayMonths[unIterator];
             }
         }
         else
@@ -242,6 +258,12 @@ bool appTimerDisplayIST(time_t ulCurrentTime)
     }
 
     unMonths = unIterator + INITIALIZER_ONE;
+
+    if (ulDays == INITIALIZER_ZERO)
+    {
+        unMonths -= INITIALIZER_ONE;
+        ulDays = unArrayMonths[unMonths - INITIALIZER_ONE];
+    }
 
     if (TIME_LIMIT < unHours)
     {
@@ -323,11 +345,15 @@ bool appTimerDisplayGMT(time_t ulCurrentTime)
     {
         if (ulDays >= unArrayMonths[unIterator])
         {
-            ulDays -= unArrayMonths[unIterator];
-
             if (appTimerCheckLeap(ulYears) && (INITIALIZER_ONE == unIterator))
             {
-                ulDays--;
+                unArrayMonths[unIterator] ++;
+                ulDays -= unArrayMonths[unIterator];
+                unArrayMonths[unIterator] --;
+            }
+            else
+            {
+                ulDays -= unArrayMonths[unIterator];
             }
         }
         else
@@ -337,6 +363,12 @@ bool appTimerDisplayGMT(time_t ulCurrentTime)
     }
 
     unMonths = unIterator + INITIALIZER_ONE;
+
+    if (ulDays == INITIALIZER_ZERO)
+    {
+        unMonths -= INITIALIZER_ONE;
+        ulDays = unArrayMonths[unMonths - INITIALIZER_ONE];
+    }
 
     if (TIME_LIMIT < unHours)
     {
