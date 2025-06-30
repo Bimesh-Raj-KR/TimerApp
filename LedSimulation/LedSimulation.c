@@ -18,7 +18,6 @@
 //***************************** Local Constants ********************************
 
 //***************************** Local Variables ********************************
-static uint16 unLedState = INITIALIZER_ZERO;
 
 //***************************** Local Functions ********************************
 
@@ -31,6 +30,8 @@ static uint16 unLedState = INITIALIZER_ZERO;
 //******************************************************************************
 bool LedSimulationStatus()
 {
+    static uint16 unLedState = INITIALIZER_ZERO;
+
     if (INITIALIZER_ZERO == unLedState)
     {
         unLedState = INITIALIZER_ONE;
