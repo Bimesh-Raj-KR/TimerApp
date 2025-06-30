@@ -9,10 +9,12 @@
 //******************************************************************************
 #ifndef APPTIMER_H
 #define APPTIMER_H
+
 //******************************* Include Files ******************************** 
-#include<time.h>
-#include<stdbool.h>
+#include <time.h>
+#include <stdbool.h>
 #include "common.h"
+
 //******************************* Global Types ********************************* 
 
 //***************************** Global Constants ******************************* 
@@ -33,12 +35,14 @@
 #define INITIAL_YEAR        (1970)
 #define TIME_IST            (19800)
 #define TIME_PST            (28800)
+
 //***************************** Global Variables ******************************* 
 
 //**************************** Forward Declarations **************************** 
 bool appTimerDisplayPST(time_t ulCurrentTime);
 bool appTimerDisplayIST(time_t ulCurrentTime);
 bool appTimerDisplayGMT(time_t ulCurrentTime);
+
 //*********************** Inline Method Implementations ************************ 
 
 #endif // APPTIMER_H

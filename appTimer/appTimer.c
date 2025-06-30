@@ -10,7 +10,8 @@
 //******************************************************************************
 
 //****************************** Include Files *********************************
-#include"appTimer.h"
+#include "appTimer.h"
+
 //******************************* Local Types **********************************
 
 //***************************** Local Constants ********************************
@@ -19,6 +20,7 @@
 
 //***************************** Local Functions ********************************
 static bool appTimerCheckLeap(uint32 ulYears);
+
 //*****************************.appTimerCheckLeap.******************************
 // Purpose : Bool function to check if an year is leap year or not
 // Inputs  : Years - current year

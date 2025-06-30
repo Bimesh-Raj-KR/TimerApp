@@ -48,6 +48,7 @@
 # Other files
 *.txt
 *.vscode
+ARM64_ledandtime
 
 # Kernel Module Compile Results
 *.mod*

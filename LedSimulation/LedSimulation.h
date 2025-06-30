@@ -9,19 +9,23 @@
 //******************************************************************************
 #ifndef LEDSIMULATION_H
 #define LEDSIMULATION_H
+
 //******************************* Include Files ******************************** 
-#include<time.h>
-#include<stdbool.h>
+#include <time.h>
+#include <stdbool.h>
 #include "common.h"
+
 //******************************* Global Types ********************************* 
 
 //***************************** Global Constants ******************************* 
 #define INITIALIZER_ZERO    (0)
 #define INITIALIZER_ONE     (1)
+
 //***************************** Global Variables ******************************* 
 
 //**************************** Forward Declarations **************************** 
-bool LedSimulationStatus(uint16 *unpLedState);
+bool LedSimulationStatus();
+
 //*********************** Inline Method Implementations ************************ 
 
 #endif // LEDSIMULATION_H

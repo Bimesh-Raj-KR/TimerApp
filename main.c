@@ -12,10 +12,11 @@
 //******************************************************************************
 
 //****************************** Include Files *********************************
-#include<stdio.h>
-#include<unistd.h>
-#include"appTimer.h"
+#include <stdio.h>
+#include <unistd.h>
+#include "appTimer.h"
 #include "LedSimulation.h"
+
 //******************************* Local Types **********************************
 
 //***************************** Local Constants ********************************
@@ -32,18 +33,17 @@
 // Return  : 0
 // Notes   : Prints Time every second until externally stopped
 //******************************************************************************
-
 int main()
 {
     time_t ulCurrentTime;
-    uint16 unLedState = INITIALIZER_ZERO;
+
     while (true)
     {
         time(&ulCurrentTime);
         appTimerDisplayGMT(ulCurrentTime);
         appTimerDisplayIST(ulCurrentTime);
         appTimerDisplayPST(ulCurrentTime);
-        LedSimulationStatus(&unLedState);
+        LedSimulationStatus();
         printf("\x1b[H");// Move Cursor to top-left
         sleep(1);
         printf("\x1b[J");// clear screen

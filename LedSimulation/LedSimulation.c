@@ -12,44 +12,36 @@
 
 //****************************** Include Files *********************************
 #include "LedSimulation.h"
+
 //******************************* Local Types **********************************
 
 //***************************** Local Constants ********************************
 
 //***************************** Local Variables ********************************
+static uint16 unLedState = INITIALIZER_ZERO;
 
 //***************************** Local Functions ********************************
 
-//*******************************.appTimerLed.**********************************
+//**************************.LedSimulationStatus.*******************************
 // Purpose : Bool function to print The LED state using if statements
-// Inputs  : *unLedState - Points to the location of state of LED
+// Inputs  : None
 // Outputs : None
 // Return  : blCheck
 // Notes   : None
 //******************************************************************************
-bool LedSimulationStatus(uint16 *unpLedState)
+bool LedSimulationStatus()
 {
-    bool blCheck = true;
-
-    if (NULL == unpLedState)
+    if (INITIALIZER_ZERO == unLedState)
     {
-        blCheck = false;
+        unLedState = INITIALIZER_ONE;
+        printf("\nLED OFF\n");
     }
     else
     {
-        if (INITIALIZER_ZERO == *unpLedState)
-        {
-            *unpLedState = INITIALIZER_ONE;
-            printf("\nLED OFF\n");
-        }
-        else
-        {
-            *unpLedState = INITIALIZER_ZERO;
-            printf("\nLED ON\n");
-        }
+        unLedState = INITIALIZER_ZERO;
+        printf("\nLED ON\n");
     }
 
-    return blCheck;
+    return true;
 }
-
 //EOF
