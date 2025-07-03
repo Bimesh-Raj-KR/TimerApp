@@ -48,7 +48,7 @@
 # Other files
 *.txt
 *.vscode
-ARM64_ledandtime
+ARM64Timeandled
 
 # Kernel Module Compile Results
 *.mod*
