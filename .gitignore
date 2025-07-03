@@ -49,6 +49,7 @@
 *.txt
 *.vscode
 ARM64Timeandled
+!CMakeLists.txt
 
 # Kernel Module Compile Results
 *.mod*
