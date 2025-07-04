@@ -13,6 +13,7 @@
 //******************************* Include Files ******************************* 
 #include<time.h>
 #include<stdbool.h>
+
 //******************************* Global Types ******************************** 
 
 //***************************** Global Constants ****************************** 
@@ -36,9 +37,10 @@
 //***************************** Global Variables ****************************** 
 
 //**************************** Forward Declarations *************************** 
-bool appTimerDisplayPST(time_t currentTime);
-bool appTimerDisplayIST(time_t currentTime);
-bool appTimerDisplayGMT(time_t currentTime);
+bool appTimerDisplayPST(time_t ulCurrentTime);
+bool appTimerDisplayIST(time_t ulCurrentTime);
+bool appTimerDisplayGMT(time_t ulCurrentTime);
+
 //*********************** Inline Method Implementations *********************** 
 
 #endif // APPTIMER_H

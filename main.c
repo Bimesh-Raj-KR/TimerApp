@@ -12,9 +12,9 @@
 
 //****************************** Include Files *********************************
 #include<stdio.h>
-#include<time.h>
 #include<unistd.h>
 #include"appTimer.h"
+
 //******************************* Local Types **********************************
 
 //***************************** Local Constants ********************************
@@ -31,17 +31,16 @@
 // Return  : 0
 // Notes   : Prints Time every second until externally stopped
 //******************************************************************************
-
 int main()
 {
-    time_t tCurrentTime;
+    time_t ulCurrentTime;
 
     while (1)
     {
-        time(&tCurrentTime);
-        appTimerDisplayGMT(tCurrentTime);
-        appTimerDisplayIST(tCurrentTime);
-        appTimerDisplayPST(tCurrentTime);
+        time(&ulCurrentTime);
+        appTimerDisplayGMT(ulCurrentTime);
+        appTimerDisplayIST(ulCurrentTime);
+        appTimerDisplayPST(ulCurrentTime);
         printf("\x1b[H");// Move Cursor to top-left
         sleep(1);
         printf("\x1b[J");// clear screen
