@@ -1,25 +1,30 @@
+
+# Main CMakeLists.txt
 cmake_minimum_required(VERSION 3.10)
-project(TimerApp)
+project(AppTimer C)
 
-set(CMAKE_C_STANDARD 17)
-set(source_files main.c appTimer/appTimer.c LedSimulation/LedSimulation.c)
+include(ExternalProject)
 
-include_directories(
-    ${CMAKE_SOURCE_DIR} appTimer LedSimulation
+# Linux Build
+ExternalProject_Add(Build_Linux
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/build_gcc
+    BINARY_DIR ${CMAKE_BINARY_DIR}/build_gcc
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/install
+    INSTALL_COMMAND ""  # Skip install step
 )
 
-# Release build
-add_executable(TimeandLed ${source_files})
-
-target_compile_options(TimeandLed PRIVATE -Wall -Werror -Wextra)
-set_target_properties(TimeandLed PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/release
+# Raspberry Pi Cross-Compilation
+ExternalProject_Add(Build_Rpi
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/build_rpi
+    BINARY_DIR ${CMAKE_BINARY_DIR}/build_rpi
+    CMAKE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE=${CMAKE_SOURCE_DIR}/toolchain.cmake
+        -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/install
+    INSTALL_COMMAND "" 
 )
 
-# Debug build
-add_executable(TimeandLed_debug ${source_files})
-
-target_compile_options(TimeandLed_debug PRIVATE -Wall -Werror -Wextra -g -O0)
-set_target_properties(TimeandLed_debug PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/debug
+# Group both targets under one
+add_custom_target(AllTargets ALL
+    DEPENDS Build_Linux Build_Rpi
 )
+
