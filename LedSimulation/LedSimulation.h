@@ -1,4 +1,4 @@
-//***************************** GMT, IST and PST *******************************
+//***************************** LED ON, LED OFF *******************************
 // Copyright (c) 2025 Trenser Technology Solutions
 // All Rights Reserved 
 //******************************************************************************
@@ -7,8 +7,8 @@
 // Note    : None
 // 
 //******************************************************************************
-#ifndef APPTIMER_H
-#define APPTIMER_H
+#ifndef LEDSIMULATION_H
+#define LEDSIMULATION_H
 
 //******************************* Include Files ******************************** 
 #include "common.h"
@@ -16,30 +16,15 @@
 //******************************* Global Types ********************************* 
 
 //***************************** Global Constants ******************************* 
-#define LEAP_CHECK_ONE      (4)
-#define MONTHS              (12)
-#define TIME_LIMIT          (12)
-#define HOURS               (24)
-#define MIN_MONTH           (30)
-#define FEBRUARY            (28)
-#define MAX_MONTH           (31)
-#define SECONDS             (60)
-#define MAX_ARRAY_SIZE      (100)
-#define DAYS                (365)
-#define LEAP_CHECK_TWO      (400)
-#define MAX_LEAP            (492)
-#define INITIAL_YEAR        (1970)
-#define TIME_IST            (19800)
-#define TIME_PST            (28800)
+#define BLINK_DELAY_OFF     (532000)
+#define BLINK_DELAY_ON      (840000)
 
 //***************************** Global Variables ******************************* 
 
 //**************************** Forward Declarations **************************** 
-bool appTimerDisplayPST(time_t ulCurrentTime);
-bool appTimerDisplayIST(time_t ulCurrentTime);
-bool appTimerDisplayGMT(time_t ulCurrentTime);
+bool LedSimulationStatus(struct gpiod_line **pstLineNumber);
 
 //*********************** Inline Method Implementations ************************ 
 
-#endif // APPTIMER_H
+#endif // LEDSIMULATION_H
 // EOF 

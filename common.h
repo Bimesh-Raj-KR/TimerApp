@@ -11,13 +11,19 @@
 #define COMMON_H
 
 //******************************* Include Files ******************************* 
-#include<stdio.h>
+#include <stdio.h>
+#include <time.h>
+#include <stdbool.h>
+#include <unistd.h>
+#include <gpiod.h> 
 
 //******************************* Global Types ******************************** 
 typedef unsigned short uint16;
 typedef unsigned long uint32;
 
 //***************************** Global Constants ****************************** 
+#define INITIALIZER_ZERO    (0)
+#define INITIALIZER_ONE     (1)
 
 //***************************** Global Variables ****************************** 
 
