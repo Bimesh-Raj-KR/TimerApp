@@ -35,24 +35,29 @@ Output: release/timeandled.exe
         debug/main.o
         
 
-
 ### 2. Raspberry Pi (cross-compile)
 
 $ make rpi
 
 Output: release/ARM64Timeandled
 
-### 3. Build All
+### 3. Raspberry Pi (cross-compile and Blink LED)
+
+$ make ledblink
+
+Output: release/Blink_Led
+
+### 4. Build All
 
 $ make all
 
-Builds both Linux and Raspberry Pi release targets.
+Builds both Linux and Raspberry Pi (cross-compile) release targets.
 
-### 4. Clean Build Artifacts
+### 5. Clean Build Artifacts
 
 $ make clean
 
-Removes all files from release/ and debug/ folders.
+Removes all files from release/, debug/ and build/ folders.
 
 ## Building with CMake
 

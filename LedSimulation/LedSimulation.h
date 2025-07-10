@@ -16,13 +16,13 @@
 //******************************* Global Types ********************************* 
 
 //***************************** Global Constants ******************************* 
-#define INITIALIZER_ZERO    (0)
-#define INITIALIZER_ONE     (1)
+#define BLINK_DELAY_OFF     (532000)
+#define BLINK_DELAY_ON      (840000)
 
 //***************************** Global Variables ******************************* 
 
 //**************************** Forward Declarations **************************** 
-bool LedSimulationStatus();
+bool LedSimulationStatus(struct gpiod_line **pstLineNumber);
 
 //*********************** Inline Method Implementations ************************ 
 

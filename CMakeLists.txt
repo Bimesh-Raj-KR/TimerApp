@@ -13,7 +13,7 @@ ExternalProject_Add(Build_Linux
     INSTALL_COMMAND ""  # Skip install step
 )
 
-# Raspberry Pi Cross-Compilation
+# Raspberry Pi Cross-Compilation and LED Blinking
 ExternalProject_Add(Build_Rpi
     SOURCE_DIR ${CMAKE_SOURCE_DIR}/build_rpi
     BINARY_DIR ${CMAKE_BINARY_DIR}/build_rpi

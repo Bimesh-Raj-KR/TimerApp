@@ -9,7 +9,13 @@ CROSS_CC = aarch64-linux-gnu-$(CC)
 CFLAGS = -Wall -Werror -Wextra
 
 # All .h Includes
-INCLUDES = -IappTimer -ILedSimulation -I.
+INCLUDES = -IappTimer -ILedSimulation -I. -ILed_rpi/usr/include -fanalyzer
+
+# .h Includes for Led Blinking
+BLINK_INCLUDES = -IGpioController -LLed_rpi/usr/lib -lgpiod
+
+# Build Macro and Executable for LED Blinking
+LED_BLINK = -DENABLE_LED_BLINK -o release/Blink_Led
 
 # All source files
 source_files = $(wildcard *.c appTimer/*.c LedSimulation/*.c)
@@ -26,7 +32,7 @@ assembly_files = $(patsubst %.c, release/%.s, $(file_names))
 # All object file names are created with path to debug folder
 debug_files = $(patsubst %.c, debug/%.o, $(file_names))
 
-VPATH = .:appTimer:LedSimulation
+VPATH = .:appTimer:LedSimulation:GpioController
 
 # Runs both linux and rpi
 all: linux rpi
@@ -37,7 +43,10 @@ linux: Create_release Create_debug Executable Object Debug Assembly
 
 # Stores cross compiler executable in release folder
 rpi: Create_release cross_cmp
-	
+
+# Stores cross compiler executable in release folder for blinking LED
+ledblink: Create_release cross_cmp_and_blink
+
 # Create release folder
 Create_release:
 	mkdir -p release
@@ -65,12 +74,18 @@ Assembly: $(assembly_files)
 release/%.s: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -S -o $@
 
-# Generate executable for close compiling
+# Generate executable for cross compiling
 cross_cmp: $(source_files)
-	$(CROSS_CC) -o release/ARM64Timeandled $(CFLAGS) $(INCLUDES) $(source_files)
+	$(CROSS_CC) $(CFLAGS) $(INCLUDES) $(source_files) -o release/ARM64Timeandled
 
-# Remove release and Debug directories
+# Generate executable for LED Blinking
+cross_cmp_and_blink: $(source_files)
+	$(CROSS_CC) $(LED_BLINK) $(CFLAGS) $(INCLUDES) $(source_files) \
+	$(BLINK_INCLUDES) $(wildcard GpioController/*.c)
+
+# Remove release, Debug and Build directories
 
 clean: $(source_files)
 	rm -rf release
 	rm -rf debug
+	rm -rf build
