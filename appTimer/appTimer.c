@@ -129,7 +129,6 @@ bool appTimerDisplayPST(time_t ulCurrentTime)
     if (TIME_LIMIT < unHours)
     {
         unHours = unHours - TIME_LIMIT;
-
         unMerdianCheck = INITIALIZER_ONE;
     }
     else
